@@ -19,7 +19,6 @@ import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Asesorar;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Dia;
-//import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
@@ -106,40 +105,44 @@ public class ControladorPedirClase {
     
     @RequestMapping(value = "/alumno/guardarclase")
     public String guardarAsesoria(HttpServletRequest request, ModelMap model, Principal principal){
-        String idProfesor=request.getParameter("idprofesorr");
-        //int idp=Integer.valueOf(idProfesor);
-        Profesor p=profesor_bd.getProfesor(1);
+       //String idProfesor=request.getParameter("idprofesorr");
+       //int idp=Integer.valueOf(idProfesor);
+       Profesor p=profesor_bd.getProfesor(1);
         
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
         Alumno a = alumno_bd.getAlumno(usuario);
-        System.out.println("idalumno"+a.getPk_id_alumno());
-
+        System.out.println("idalumno"+a.getUsuario().getCorreo());
+        
+        
+        
         String idTema=request.getParameter("tema");
         int idt=Integer.valueOf(idTema);
         Tema t= tema_bd.getTema(idt);
+        System.out.println("idtema "+t.getTema());
         
         String idHorario=request.getParameter("hora");
         int idh=Integer.valueOf(idHorario);
         Horario h= horario_bd.getHorario(idh);
     
-    Asesorar nuevo=new Asesorar();
-    nuevo.setProfesor(p);
-    nuevo.setAlumno(a);
-    nuevo.setTema(t);
-    nuevo.setComentario(request.getParameter("comentario"));
-    nuevo.setHorario(h);
-    nuevo.setAceptada(Boolean.FALSE);
-    nuevo.setDuracion(0);
-    nuevo.setCosto(0.0);
-        System.out.println("asesoras"+nuevo.getAlumno().getPk_id_alumno());
-    asesorar_bd.guardar(nuevo);
-    
-    model.addAttribute("asesoria", nuevo);
+        Asesorar nuevo=new Asesorar();
+        nuevo.setProfesor(p);
+        nuevo.setAlumno(a);
+        nuevo.setTema(t);
+        nuevo.setComentario(request.getParameter("comentario"));
+        nuevo.setHorario(h);
+        nuevo.setAceptada(Boolean.FALSE);
+        nuevo.setDuracion(0);
+        nuevo.setCosto(0.0);
+        //System.out.println("asesoras"+nuevo.getAlumno().getPk_id_alumno());
+        asesorar_bd.guardar(nuevo);
+
+        model.addAttribute("asesoria", nuevo);
     
     
         return  "vistaalumno/mostrarnuevaclase";
     }
-
+    
+    
 }
 
 

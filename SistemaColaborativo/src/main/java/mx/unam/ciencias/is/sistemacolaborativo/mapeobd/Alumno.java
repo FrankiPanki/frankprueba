@@ -24,12 +24,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "Alumno")
 public class Alumno implements java.io.Serializable {
 
-    @Id
-    @OneToOne
-    @JoinColumn(name = "fk_id_usuario")
-    private Usuario usuario;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pk_id_alumno")
     private int pk_id_alumno;
+    @OneToOne
+    @JoinColumn(name = "fk_id_usuario")
+    private Usuario fk_id_usuario;
     @Column(name = "ultimo_nivel_educativo")
     private String ultimo_nivel_educativo;
     @OneToMany(mappedBy = "alumno")
@@ -38,20 +38,12 @@ public class Alumno implements java.io.Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Asesorar> asesorar =  new ArrayList<>();
 
-    public List<InteresAcademico> getIntereses() {
-        return intereses;
-    }
-
-    public void setIntereses(List<InteresAcademico> intereses) {
-        this.intereses = intereses;
-    }
-
     public Usuario getUsuario() {
-        return this.usuario;
+        return fk_id_usuario;
     }
 
-    public void setUsuario(Usuario user) {
-        this.usuario = user;
+    public void setUsuario(Usuario usuario) {
+        this.fk_id_usuario = usuario;
     }
 
     public int getPk_id_alumno() {
@@ -69,13 +61,22 @@ public class Alumno implements java.io.Serializable {
     public void setUltimo_nivel_educativo(String ultimo_nivel_educativo) {
         this.ultimo_nivel_educativo = ultimo_nivel_educativo;
     }
-    
-    public List<Asesorar> getAsesorar() {
-        return this.asesorar;
+
+    public List<InteresAcademico> getIntereses() {
+        return intereses;
     }
-    
+
+    public void setIntereses(List<InteresAcademico> intereses) {
+        this.intereses = intereses;
+    }
+
+    public List<Asesorar> getAsesorar() {
+        return asesorar;
+    }
+
     public void setAsesorar(List<Asesorar> asesorar) {
         this.asesorar = asesorar;
-    }     
+    }
 
+    
 }

@@ -140,7 +140,9 @@ public class Asesorar  implements java.io.Serializable {
         this.duracion = duracion;
     }
 
-
+    public String toString(){
+    return Integer.toString(this.getIdasesorar());
+    }
 
 
 

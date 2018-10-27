@@ -119,7 +119,7 @@ public class AlumnoDAO {
      * Regresa la lista de todos los usuarios en la base de datos
      * @return la lista que contiene a todos los usuarios de la base de datos
      */
-    public List<Alumno> getUsuarios(){
+    public List<Alumno> getAlumnos(){
         List<Alumno> result= null;
         Session session = sessionFactory.openSession();
         Transaction tx=null;
