@@ -39,7 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @MultipartConfig
-public class ControladorAceptarAsesoria {
+public class ControladorVerMisAsesorias {
     @Autowired
     private UsuarioDAO usuario_bd;
     @Autowired
@@ -63,39 +63,17 @@ public class ControladorAceptarAsesoria {
 
     
 
-    @RequestMapping(value = "/profesor/mostrarasesorias")
+    @RequestMapping(value = "/alumno/vermisasesorias")
     public String guardarAsesoria(HttpServletRequest request, ModelMap model, Principal principal){        
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
-        Profesor p = profesor_bd.getProfesor(usuario);
-        List<Asesorar> asesorias= p.getAsesorar();
-        System.out.println("lista " +asesorias);
+        Alumno a = alumno_bd.getAlumno(usuario);
+        List<Asesorar> asesorias= a.getAsesorar();
         model.addAttribute("asesorias", asesorias);
     
     
-        return  "vistaprofesor/misasesorias";
+        return  "vistaalumno/vermisasesorias";
     }
 
 
-    @RequestMapping(value = "/profesor/aceptarasesoria")
-    public String aceptarAsesoria(HttpServletRequest request, ModelMap model, Principal principal){        
-        Asesorar aceptada=asesorar_bd.getAsesorar(Integer.valueOf(request.getParameter("idaa")));
-        aceptada.setComentariorespuesta(request.getParameter("comentariorespuestaa"));
-        aceptada.setDuracion(Integer.valueOf(request.getParameter("duracion")));
-        aceptada.setEstado("aceptada");
-        aceptada.setAceptada(Boolean.TRUE);
-        asesorar_bd.actualizar(aceptada);
-        return  "redirect:/profesor/mostrarasesorias";
-    }
-    
-        
-    @RequestMapping(value = "/profesor/rechazarasesoria")
-    public String rechazrAsesoria(HttpServletRequest request, ModelMap model, Principal principal){        
-        Asesorar aceptada=asesorar_bd.getAsesorar(Integer.valueOf(request.getParameter("idar")));
-        aceptada.setComentariorespuesta(request.getParameter("comentariorespuestar"));
-        aceptada.setEstado("rechazada");
-        asesorar_bd.actualizar(aceptada);
-    
-    
-        return  "redirect:/profesor/mostrarasesorias";
-    }
+  
 }

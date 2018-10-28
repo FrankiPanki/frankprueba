@@ -49,20 +49,20 @@
           						<span aria-hidden="true">&times;</span>
         					</button>
       					</div>
-      					<form action="">
+      					<form action="${pageContext.request.contextPath}/profesor/aceptarasesoria">
       						<div class="form-group">
       							<div class="modal-body">
   									<div class="form-group">
 
     									<label for="exampleFormControlTextarea1">Duracion</label>
-    									<input type = "text" class = "form-control bfh-number">
+                                                                        <input type = "number" class = "form-control bfh-number" name="duracion">
     									<label for="exampleFormControlTextarea1">Comentario</label>
-    									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comentariorespuestaa"></textarea>
   									</div>	        							
       							</div>
       							<div class="modal-footer">
         							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        							<button type="button" class="btn btn-primary">Save changes</button>
+                                                                <button type="submit" class="btn btn-primary" name="idaa" value="${asesoria.toString()}">Save changes</button>
       							</div>
       						</div>
       					</form>
@@ -86,17 +86,17 @@
           						<span aria-hidden="true">&times;</span>
         					</button>
       					</div>
-      					<form action="">
+      					<form action="${pageContext.request.contextPath}/profesor/rechazarasesoria">
       						<div class="form-group">
       							<div class="modal-body">
   									<div class="form-group">
     									<label for="exampleFormControlTextarea1">Comentario</label>
-    									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comentariorespuestar"></textarea>
   									</div>	        							
       							</div>
       							<div class="modal-footer">
         							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        							<button type="button" class="btn btn-primary">Save changes</button>
+                                                                <button type="submit" class="btn btn-primary" name="idar" value="${asesoria.toString()}">Save changes</button>
       							</div>
       						</div>
       					</form>

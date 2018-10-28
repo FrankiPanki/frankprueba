@@ -133,6 +133,7 @@ public class ControladorPedirClase {
         nuevo.setAceptada(Boolean.FALSE);
         nuevo.setDuracion(0);
         nuevo.setCosto(0.0);
+        nuevo.setEstado("solicitada");
         //System.out.println("asesoras"+nuevo.getAlumno().getPk_id_alumno());
         asesorar_bd.guardar(nuevo);
 
